@@ -1,7 +1,9 @@
 # PCB Defect Detection
 
 <!-- <img src="image/pcb_defect_detection.png" style="width: 50%;"> -->
-![APP Screenshot](image/app.png)
+Dark | Light
+:---:|:----:
+![APP dark](image/app-dark.png) | ![APP light](image/app-light.png)
 
 ## Overview
 
