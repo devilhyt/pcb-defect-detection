@@ -3,7 +3,7 @@ from streamlit_extras.metric_cards import style_metric_cards
 from ultralytics import YOLO
 from PIL import Image
 
-# setting the app
+# settings
 st.set_page_config(layout="wide")
 
 style_metric_cards(
@@ -14,14 +14,14 @@ style_metric_cards(
 )
 
 
-# load and cache the model
 @st.cache_resource
 def load_model():
+    """load and cache the model"""
     return YOLO("pcb_defect/v3/weights/best.pt")
 
 
-# a flag to check if the image is updated
 def file_uploader_on_change():
+    """callback function to set the image_updated flag"""
     st.session_state["image_updated"] = True
 
 
@@ -30,11 +30,10 @@ if "image_updated" not in st.session_state:
     st.session_state["image_updated"] = True
 model = load_model()
 
-# main app
+# title
 st.title("PCB Defect Detection")
 st.divider()
-# st.image('./image/pcb.jpg', use_container_width=True)
-col1, col2 = st.columns(2, gap="large")
+col1, col2 = st.columns([3,3], gap="large")
 
 # image uploader
 with col1:
@@ -50,8 +49,9 @@ if uploaded_file is None:
     st.session_state["label_count"] = {}
 elif image_updated:
     image = Image.open(uploaded_file)
+
     results = model.predict(image)
-    annotated_frame = results[0].plot(line_width=3)
+    annotated_frame = results[0].plot()
 
     result_df = results[0].to_df()
     label_count = {}
@@ -63,7 +63,7 @@ elif image_updated:
     st.session_state["label_count"] = label_count
     st.session_state["image_updated"] = False
 
-# Defects Count
+# defects Count
 COLUMNS = 3
 with col1:
     st.header("Defects Count")
@@ -75,18 +75,18 @@ with col1:
             st.metric(label=name, value=value)
     st.divider()
 
-# Fault Points
-IMAGE_WIDTH = 480
+# fault points
+IMAGE_WIDTH = 640
 with col2:
     st.header("Fault Points")
-    image_switch = st.checkbox("Show Original Image")
+    image_switch = st.checkbox("Show Labels", value=True)
 
     if uploaded_file is not None:
         if image_switch:
-            image = st.session_state["image"]
-            st.image(image)
-        else:
             annotated_frame = st.session_state["annotated_frame"]
-            st.image(annotated_frame)
+            st.image(annotated_frame, width=IMAGE_WIDTH)
+        else:
+            image = st.session_state["image"]
+            st.image(image, width=IMAGE_WIDTH)
 
     st.divider()
