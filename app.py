@@ -2,16 +2,28 @@ import streamlit as st
 from streamlit_extras.metric_cards import style_metric_cards
 from ultralytics import YOLO
 from PIL import Image
+from streamlit_theme import st_theme
 
 # settings
 st.set_page_config(layout="wide")
 
-style_metric_cards(
-    background_color="#262730",
-    border_left_color=None,
-    border_color=None,
-    box_shadow=False,
-)
+theme = st_theme()
+theme_base = theme["base"]
+
+if theme_base == "dark":
+    style_metric_cards(
+        background_color="#262730",
+        border_left_color=None,
+        border_color=None,
+        box_shadow=False,
+    )
+else:
+    style_metric_cards(
+        background_color="#f0f2f6",
+        border_left_color=None,
+        border_color=None,
+        box_shadow=False,
+    )
 
 
 @st.cache_resource
