@@ -1,13 +1,14 @@
 # PCB Defect Detection
 
-<!-- <img src="image/pcb_defect_detection.png" style="width: 50%;"> -->
-Dark | Light
-:---:|:----:
-![APP dark](image/app-dark.png) | ![APP light](image/app-light.png)
+<img src="image/pcb-defect-detection.jpg" style="width: 50%;">
 
 ## Overview
 
 This is our final project for the Computer Vision course at NCHU, Fall 2024. We use the `YOLOv11s` model to detect defects on printed circuit boards (PCBs). With an mAP50 of 0.995, the model achieves exceptional accuracy and demonstrates high inference speed.
+
+Dark | Light
+:---:|:----:
+![APP dark](image/app-dark.png) | ![APP light](image/app-light.png)
 
 ## Files
 
