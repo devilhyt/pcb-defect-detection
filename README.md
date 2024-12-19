@@ -27,9 +27,9 @@ Dark | Light
   - OS: Linux Mint 22
   - Python: 3.11.10
 
-### Step 1. Clone this repo.
+### Step 1. Clone the repo.
   ```bash
-  git clone --depth 1 --no-checkout https://github.com/devilhyt/pcb-defect-detection.git
+  git clone --depth 1 https://github.com/devilhyt/pcb-defect-detection.git
   
   cd pcb-defect-detection
   ```
@@ -59,7 +59,7 @@ Dark | Light
     # Disable Weights & Biases logging
     wandb disabled
     ```
-  - If you choose to enable Weights & Biases logging, you need to authenticate your account.
+  - If you choose to enable Weights & Biases logging, you need to log in to your account.
       ```bash
       wandb login
       ```
