@@ -4,11 +4,22 @@ from ultralytics import YOLO
 from PIL import Image
 from streamlit_theme import st_theme
 
-# settings
+# # settings
 st.set_page_config(layout="wide")
 
+st.html(
+    """
+    <style>
+        .stMainBlockContainer {
+            max-width:70rem;
+        }
+    </style>
+    """
+)
+
 theme = st_theme()
-theme_base = theme["base"]
+theme_base = theme["base"] if theme else "dark"
+
 
 if theme_base == "dark":
     style_metric_cards(
@@ -45,7 +56,7 @@ model = load_model()
 # title
 st.title("PCB Defect Detection")
 st.divider()
-col1, col2 = st.columns([3,3], gap="large")
+col1, col2 = st.columns([3, 3], gap="large")
 
 # image uploader
 with col1:
@@ -88,7 +99,6 @@ with col1:
     st.divider()
 
 # fault points
-IMAGE_WIDTH = 640
 with col2:
     st.header("Fault Points")
     image_switch = st.checkbox("Show Labels", value=True)
@@ -96,9 +106,9 @@ with col2:
     if uploaded_file is not None:
         if image_switch:
             annotated_frame = st.session_state["annotated_frame"]
-            st.image(annotated_frame, width=IMAGE_WIDTH)
+            st.image(annotated_frame)
         else:
             image = st.session_state["image"]
-            st.image(image, width=IMAGE_WIDTH)
+            st.image(image)
 
     st.divider()
