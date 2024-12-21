@@ -21,6 +21,8 @@ Dark | Light
 
 [`requirements.txt`](requirements.txt): List of Python packages required to run the code.
 
+[`ppt/final project.pdf`](ppt/final%20project.pdf): Presentation slides for this project.
+
 ## Installation
 
 ### The environment used in this project:
